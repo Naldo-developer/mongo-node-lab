@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion de Clientes y Pedidos</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">MongoDB + Node.js</p>
+          <h1>Mini sistema de gestion de clientes y pedidos</h1>
+          <p class="hero-copy">
+            Inserta datos, consulta reglas de negocio, registra pedidos y controla el stock
+            desde una interfaz web sencilla.
+          </p>
+        </div>
+        <button id="seed-btn" class="primary-btn">Insertar datos de prueba</button>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Registrar cliente</h2>
+          <form id="cliente-form" class="form-stack">
+            <input name="nombre" placeholder="Nombre" required />
+            <input name="correo" type="email" placeholder="Correo" required />
+            <input name="ciudad" placeholder="Ciudad" required />
+            <input name="edad" type="number" min="1" placeholder="Edad" required />
+            <button type="submit">Guardar cliente</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h2>Registrar producto</h2>
+          <form id="producto-form" class="form-stack">
+            <input name="nombre" placeholder="Nombre" required />
+            <input name="precio" type="number" min="0" step="0.01" placeholder="Precio" required />
+            <input name="stock" type="number" min="0" placeholder="Stock" required />
+            <button type="submit">Guardar producto</button>
+          </form>
+        </article>
+
+        <article class="panel span-2">
+          <div class="panel-head">
+            <h2>Registrar pedido</h2>
+            <button id="add-item-btn" type="button" class="ghost-btn">Agregar producto</button>
+          </div>
+          <form id="pedido-form" class="form-stack">
+            <select id="pedido-cliente" name="idCliente" required></select>
+            <div id="pedido-items" class="items-stack"></div>
+            <button type="submit">Confirmar pedido</button>
+          </form>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Consultas</h2>
+          <div class="action-stack">
+            <button id="clientes-frecuentes-btn">Clientes frecuentes</button>
+            <button id="stock-critico-btn">Stock critico</button>
+          </div>
+          <form id="ciudad-form" class="inline-form">
+            <input id="ciudad-input" placeholder="Pedidos por ciudad" required />
+            <button type="submit">Buscar</button>
+          </form>
+          <form id="ticket-form" class="inline-form">
+            <select id="ticket-cliente" required></select>
+            <button type="submit">Ticket promedio</button>
+          </form>
+          <button id="actualizar-ciudad-btn">Cambiar Arequipa por Lima</button>
+        </article>
+
+        <article class="panel">
+          <h2>Clientes</h2>
+          <div id="clientes-list" class="result-list"></div>
+        </article>
+
+        <article class="panel">
+          <h2>Productos</h2>
+          <div id="productos-list" class="result-list"></div>
+        </article>
+
+        <article class="panel span-2">
+          <h2>Pedidos</h2>
+          <div id="pedidos-list" class="result-list"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Resultado de operaciones</h2>
+          <button id="refresh-btn" type="button" class="ghost-btn">Actualizar panel</button>
+        </div>
+        <pre id="output"></pre>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+  </html>
